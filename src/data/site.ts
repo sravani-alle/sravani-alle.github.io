@@ -139,6 +139,41 @@ export const site = {
     },
   ],
 
+  // ── Playground — fun things vibe-coded on weekends, all live ────────
+  // No repos needed; each card links straight to the running site.
+  playground: [
+    {
+      title: 'Never Have I Ever… AI Edition',
+      blurb:
+        'A mobile-first party game serving up AI-themed “Never Have I Ever” prompts - one card at a time, shareable, no login, and a little too accurate about how much you talk to chatbots.',
+      url: 'https://never-have-i-ever-ai.netlify.app/',
+    },
+    {
+      title: 'RegexNut',
+      blurb:
+        'A visual regex playground - build patterns by clicking components, test them live, browse a library of common ones, and get plain-English explanations, all for the regex-curious (or regex-cursed).',
+      url: 'https://regexnut.netlify.app/',
+    },
+    {
+      title: 'BoldPoint Edits',
+      blurb:
+        'A quick text touch-up tool for LinkedIn posts - bold, italic, strike, highlight, emojis, and one-click copy - since LinkedIn’s editor still won’t let you format anything yourself.',
+      url: 'https://boldpointedits.netlify.app/',
+    },
+    {
+      title: 'QR Quay',
+      blurb:
+        'A clean, fast QR code generator that runs 100% in your browser - your data never leaves your device, because a QR code shouldn’t come with a privacy policy.',
+      url: 'https://qrquay.netlify.app/',
+    },
+    {
+      title: 'IDcrap',
+      blurb:
+        'A free, no-signup tool that crops and resizes your photo into passport/visa-ready dimensions, then lays out a print-ready sheet - because photo requirements shouldn’t ruin your day.',
+      url: 'https://idcrap.netlify.app/',
+    },
+  ],
+
   // ── Writing (Medium + Towards Data Science, curated) ────────────────
   // `date` is optional — leave '' to hide it. Fill in publish dates for extra credibility.
   writing: [

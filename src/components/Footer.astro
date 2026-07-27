@@ -1,0 +1,40 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span class="sig">{site.name}</span>
+    <span class="built">
+      Built with Astro · deployed on GitHub Pages
+    </span>
+    <a href="#top" class="top">Back to top ↑</a>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2rem;
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    font-family: var(--mono);
+    font-size: var(--fs-label);
+    color: var(--faint);
+  }
+  .sig {
+    color: var(--muted);
+  }
+  .top {
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+  .top:hover {
+    color: var(--accent);
+  }
+</style>

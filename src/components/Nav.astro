@@ -1,0 +1,137 @@
+---
+import { site } from '../data/site';
+
+const links = [
+  { href: '#work', label: 'Projects' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#writing', label: 'Blogs' },
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+];
+
+const initials = site.name
+  .split(' ')
+  .map((w) => w[0])
+  .slice(0, 2)
+  .join('');
+---
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="mark" aria-label="Back to top">
+      <span class="mark-glyph">{initials}</span>
+    </a>
+
+    <nav class="links" aria-label="Primary">
+      {links.map((l) => <a href={l.href} data-link>{l.label}</a>)}
+    </nav>
+
+    <a class="contact-cta" href="#contact" data-link>Contact</a>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--bg) 72%, transparent);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .nav.scrolled {
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .mark-glyph {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.03em;
+    padding: 0.35rem 0.55rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 9px;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .links {
+    display: flex;
+    gap: 1.75rem;
+  }
+  .links a {
+    font-size: var(--fs-sm);
+    color: var(--muted);
+    position: relative;
+    transition: color 0.2s ease;
+  }
+  .links a:hover,
+  .links a.active {
+    color: var(--ink);
+  }
+  .links a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: var(--grad);
+    border-radius: 2px;
+  }
+  .contact-cta {
+    font-family: var(--mono);
+    font-size: var(--fs-label);
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    color: var(--ink);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .contact-cta:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  @media (max-width: 680px) {
+    .links {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const nav = document.querySelector('.nav');
+  const onScroll = () => nav?.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // active-section highlight
+  const linkEls = Array.from(document.querySelectorAll('[data-link]')) as HTMLAnchorElement[];
+  const byId = new Map(linkEls.map((a) => [a.getAttribute('href')!.slice(1), a]));
+  const sections = Array.from(byId.keys())
+    .map((id) => document.getElementById(id))
+    .filter(Boolean) as HTMLElement[];
+
+  const spy = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          linkEls.forEach((a) => a.classList.remove('active'));
+          byId.get(e.target.id)?.classList.add('active');
+        }
+      }
+    },
+    { rootMargin: '-45% 0px -50% 0px' }
+  );
+  sections.forEach((s) => spy.observe(s));
+</script>

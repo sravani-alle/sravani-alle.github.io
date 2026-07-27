@@ -1,0 +1,141 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="writing" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">writing</p>
+    <h2 class="section-title reveal">
+      I write to understand — and to help others get there faster.
+    </h2>
+
+    <ul class="posts">
+      {
+        site.writing.map((post) => (
+          <li class="reveal">
+            <a class="post" href={post.url} target="_blank" rel="noopener">
+              <div class="meta">
+                <span class={`pub ${post.publication === 'Towards Data Science' ? 'tds' : 'medium'}`}>
+                  {post.publication}
+                </span>
+                {post.date && <span class="date">{post.date}</span>}
+              </div>
+              <h3 class="post-title">{post.title}</h3>
+              <p class="post-blurb">{post.blurb}</p>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="profiles reveal">
+      <span class="profiles-label">Read more on</span>
+      {
+        site.writingProfiles.map((p) => (
+          <a class="profile" href={p.url} target="_blank" rel="noopener">
+            {p.label} <span aria-hidden="true">↗</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .posts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+  .post {
+    position: relative;
+    display: block;
+    padding: 1.75rem 3rem 1.75rem 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding-left 0.25s ease;
+  }
+  .post:hover {
+    padding-left: 1rem;
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .pub {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+    border: 1px solid var(--line-strong);
+  }
+  .pub.tds {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+  .pub.medium {
+    color: var(--accent-2);
+    border-color: color-mix(in srgb, var(--accent-2) 45%, transparent);
+  }
+  .date {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    color: var(--faint);
+  }
+  .post-title {
+    font-size: var(--fs-row-title);
+    max-width: 34ch;
+    transition: color 0.2s ease;
+  }
+  .post:hover .post-title {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .post-blurb {
+    color: var(--muted);
+    font-size: var(--fs-body);
+    margin: 0.6rem 0 0;
+    max-width: 60ch;
+  }
+  .arrow {
+    position: absolute;
+    right: 0.25rem;
+    top: 1.75rem;
+    color: var(--muted);
+    font-size: 1.2rem;
+    transition:
+      transform 0.25s ease,
+      color 0.2s ease;
+  }
+  .post:hover .arrow {
+    color: var(--accent);
+    transform: translate(3px, -3px);
+  }
+  .profiles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    margin-top: 2.25rem;
+    font-family: var(--mono);
+    font-size: var(--fs-sm);
+  }
+  .profiles-label {
+    color: var(--faint);
+  }
+  .profile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+  .profile:hover {
+    color: var(--accent);
+  }
+</style>

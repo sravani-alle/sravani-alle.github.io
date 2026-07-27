@@ -1,0 +1,168 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Latent Space — design tokens + base
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* midnight signal palette */
+  --bg: #0a0e1a;
+  --bg-elev: #111726;
+  --bg-elev-2: #161d30;
+  --ink: #e8ecf5;
+  --muted: #8a93a8;
+  --faint: #5a6379;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.16);
+
+  /* signal accent — a plot colormap, cyan → violet */
+  --accent: #6ee7f0;
+  --accent-2: #b794f6;
+  --accent-glow: rgba(110, 231, 240, 0.14);
+  --grad: linear-gradient(100deg, var(--accent), var(--accent-2));
+
+  /* type */
+  --display: 'Bricolage Grotesque', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* type scale — every font-size on the site comes from one of these */
+  --fs-micro: 0.75rem; /* badges, tags, dates, fine print */
+  --fs-label: 0.8rem; /* mono eyebrows, field labels, meta */
+  --fs-sm: 0.9rem; /* secondary links, nav, captions */
+  --fs-body: 1rem; /* base body, blurbs, inputs, buttons */
+  --fs-lead: clamp(1.15rem, 2.2vw, 1.5rem); /* lead paragraphs, tagline */
+  --fs-card-title: 1.25rem; /* titles inside a grid of cards */
+  --fs-row-title: clamp(1.2rem, 2.6vw, 1.6rem); /* full-width row/list titles */
+  --fs-section: clamp(1.9rem, 4.5vw, 3rem); /* section headings */
+  --fs-display: clamp(2.5rem, 7.5vw, 4.75rem); /* hero name, closing CTA */
+
+  /* rhythm */
+  --maxw: 1080px;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --section-y: clamp(5rem, 12vh, 9rem);
+  --radius: 14px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+::selection {
+  background: var(--accent);
+  color: #06121a;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── layout helpers ─────────────────────────────────────────────── */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+/* code-comment eyebrow — the honest structural device */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin: 0 0 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.eyebrow::before {
+  content: '//';
+  color: var(--faint);
+}
+
+.section-title {
+  font-size: var(--fs-section);
+  max-width: 22ch;
+  margin-bottom: 2.75rem;
+}
+
+.gradient-text {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── scroll reveal ──────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

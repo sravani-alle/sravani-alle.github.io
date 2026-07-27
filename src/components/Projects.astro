@@ -1,0 +1,118 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="work" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">selected_work</p>
+    <h2 class="section-title reveal">Things I've designed, built, and shipped.</h2>
+
+    <div class="grid">
+      {
+        site.projects.map((p) => (
+          <article class="card reveal">
+            <h3 class="title">{p.title}</h3>
+            <p class="blurb">{p.blurb}</p>
+            <ul class="tags">
+              {p.tags.map((t) => (
+                <li>{t}</li>
+              ))}
+            </ul>
+            <div class="links">
+              {p.repo && (
+                <a href={p.repo} target="_blank" rel="noopener">
+                  Code <span aria-hidden="true">↗</span>
+                </a>
+              )}
+              {p.demo && (
+                <a href={p.demo} target="_blank" rel="noopener">
+                  Live demo <span aria-hidden="true">↗</span>
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    position: relative;
+    background: var(--bg-elev);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      background 0.2s ease;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 2px;
+    background: var(--grad);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: var(--line-strong);
+    background: var(--bg-elev-2);
+  }
+  .card:hover::before {
+    transform: scaleX(1);
+  }
+  .title {
+    font-size: var(--fs-card-title);
+    line-height: 1.25;
+  }
+  .blurb {
+    color: var(--muted);
+    font-size: var(--fs-body);
+    margin: 0.85rem 0 1.25rem;
+    flex: 1;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    list-style: none;
+    margin: 0 0 1.25rem;
+    padding: 0;
+  }
+  .tags li {
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+  }
+  .links {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: auto;
+  }
+  .links a {
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 0.2s ease;
+  }
+  .links a:hover {
+    color: var(--accent);
+  }
+</style>

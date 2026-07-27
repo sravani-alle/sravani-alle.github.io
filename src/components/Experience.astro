@@ -1,0 +1,103 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="experience" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">experience</p>
+    <h2 class="section-title reveal">Where I've built things.</h2>
+
+    <ol class="timeline">
+      {
+        site.experience.map((job) => (
+          <li class="entry reveal">
+            <div class="period">{job.period}</div>
+            <div class="detail">
+              <div class="node" aria-hidden="true" />
+              <h3 class="role">
+                {job.role} <span class="at">at</span>{' '}
+                <span class="company">{job.company}</span>
+              </h3>
+              <p class="place">{job.location}</p>
+              <p class="summary">{job.summary}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .entry {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 1.5rem;
+  }
+  .period {
+    font-family: var(--mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+    padding-top: 0.15rem;
+  }
+  .detail {
+    position: relative;
+    padding: 0 0 2.75rem 1.75rem;
+    border-left: 1px solid var(--line);
+  }
+  .entry:last-child .detail {
+    padding-bottom: 0;
+  }
+  .node {
+    position: absolute;
+    left: -6px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 4px var(--bg), 0 0 12px var(--accent-glow);
+  }
+  .role {
+    font-size: var(--fs-row-title);
+  }
+  .at {
+    color: var(--faint);
+    font-weight: 500;
+  }
+  .company {
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .place {
+    font-family: var(--mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+    margin: 0.4rem 0 1rem;
+  }
+  .summary {
+    margin: 0;
+    font-size: var(--fs-body);
+    color: var(--muted);
+    max-width: 64ch;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .entry {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+    .period {
+      padding-left: 1.75rem;
+    }
+  }
+</style>

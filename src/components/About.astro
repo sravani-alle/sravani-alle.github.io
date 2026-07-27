@@ -1,0 +1,35 @@
+---
+import { site } from '../data/site';
+---
+
+<section id="about" class="section">
+  <div class="wrap">
+    <p class="eyebrow reveal">about</p>
+    <h2 class="section-title reveal">Data that reaches the people making decisions.</h2>
+
+    <div class="body reveal">
+      {site.about.paragraphs.map((p) => <p class="para">{p}</p>)}
+      <p class="based">
+        <span class="pin" aria-hidden="true">◈</span> Based in {site.location}
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .para {
+    font-size: var(--fs-body);
+    line-height: 1.75;
+    color: var(--muted);
+    margin: 0 0 1.25rem;
+  }
+  .based {
+    font-family: var(--mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+    margin: 2rem 0 0;
+  }
+  .based .pin {
+    color: var(--accent-2);
+  }
+</style>

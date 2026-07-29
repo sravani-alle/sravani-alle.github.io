@@ -3,6 +3,7 @@ import { site } from '../data/site';
 ---
 
 <section id="top" class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
   <canvas class="field" aria-hidden="true"></canvas>
   <div class="grid-overlay" aria-hidden="true"></div>
 
@@ -40,6 +41,35 @@ import { site } from '../data/site';
     align-items: center;
     overflow: hidden;
     isolation: isolate;
+  }
+  .hero-bg {
+    /* how far left to slide the photo so the subject clears the centered text */
+    --bg-shift: 8vw;
+
+    position: absolute;
+    inset: 0;
+    z-index: -3;
+    /* Layer 2 continues the photo's fog past its right edge — sliding the image
+       left uncovers a strip there, and these stops match its rightmost column. */
+    background-image: url('/portfolio-hero-background-light-16x9.webp'),
+      linear-gradient(to bottom, #f6efec 0%, #f3edeb 50%, #e4dedb 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, 100% 100%;
+    background-position: calc(50% - var(--bg-shift)) center, center;
+    opacity: 0.9;
+    filter: saturate(0.7) contrast(0.9);
+    -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 30%, transparent 78%);
+    mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, #000 30%, transparent 78%);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--bg) 45%, transparent),
+      var(--bg) 95%
+    );
   }
   .field {
     position: absolute;

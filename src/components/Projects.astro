@@ -11,6 +11,7 @@ import { site } from '../data/site';
       {
         site.projects.map((p) => (
           <article class="card reveal">
+            {p.badge && <span class="badge">{p.badge}</span>}
             <h3 class="title">{p.title}</h3>
             <p class="blurb">{p.blurb}</p>
             <ul class="tags">
@@ -74,6 +75,19 @@ import { site } from '../data/site';
   }
   .card:hover::before {
     transform: scaleX(1);
+  }
+  .badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: var(--fs-micro);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    background: var(--accent-glow);
+    border-radius: 6px;
+    padding: 0.2rem 0.55rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
   }
   .title {
     font-size: var(--fs-card-title);

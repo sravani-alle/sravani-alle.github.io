@@ -93,6 +93,16 @@ export const site = {
   // ── Projects (curated — your best 4–6) ──────────────────────────────
   projects: [
     {
+      title: 'Reality Checks — AI-Powered Digital Literacy',
+      blurb:
+        'An interactive platform for practicing safer decisions online. An n8n-powered AI pipeline discovers emerging threats, generates realistic scenarios, evaluates their quality through an independent LLM, and routes content for human review before publication.',
+      tags: ['n8n', 'Supabase', 'PostgreSQL', 'LLMs', 'Lovable', 'AI Agents'],
+      repo: 'https://github.com/sravani-alle/Reality-Checks',
+      demo: 'https://reality-checks.lovable.app/',
+      featured: true,
+      badge: 'Featured',
+    },
+    {
       title: 'Nudger Bee — AI Community Coordinator for Slack',
       blurb:
         'An MCP-powered Slack agent that automates multilingual onboarding, peer-matching, daily engagement nudges, and silent-user alerts for community health workers — with a built-in clinical fire-wall that redirects medical questions instead of answering them, saving ~6–8 hrs/week of manual coordination.',
@@ -100,6 +110,7 @@ export const site = {
       repo: 'https://github.com/sravani-alle/NudgerBee',
       demo: '',
       featured: true,
+      badge: '',
     },
     {
       title: 'SQL Assistant Crew — Multi-Agent Natural Language SQL',
@@ -109,6 +120,7 @@ export const site = {
       repo: 'https://github.com/sravani-alle/SQL-Assistant-Crew',
       demo: '',
       featured: true,
+      badge: '',
     },
     {
       title: 'Data Product Governance Control Tower',
@@ -118,6 +130,7 @@ export const site = {
       repo: 'https://github.com/sravani-alle/Data-Governance-Control-Tower',
       demo: '',
       featured: true,
+      badge: '',
     },
     {
       title: 'Metabase Metadata Auditor',
@@ -127,6 +140,7 @@ export const site = {
       repo: 'https://github.com/sravani-alle/Metabase-Metadata-Analysis',
       demo: '',
       featured: false,
+      badge: '',
     },
     {
       title: 'Tableau Metadata Analysis — Proactive Dependency Tracking',
@@ -136,6 +150,7 @@ export const site = {
       repo: 'https://github.com/sravani-alle/Tableau-Metadata-Analysis',
       demo: '',
       featured: false,
+      badge: '',
     },
   ],
 

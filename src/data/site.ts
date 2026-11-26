@@ -193,6 +193,14 @@ export const site = {
   // `date` is optional — leave '' to hide it. Fill in publish dates for extra credibility.
   writing: [
     {
+      title: "Analytics Engineering's Missing Layer Is Business Communication",
+      publication: 'Towards Data Science',
+      date: 'Nov 2026',
+      url: 'https://towardsdatascience.com/analytics-engineerings-missing-layer-is-business-communication/',
+      blurb:
+        'Stakeholder communication in analytics engineering, interpreting business metrics, and a practical four-step framework for communicating technical changes.',
+    },
+    {
       title: 'The 2026 Data Mandate: Is Your Governance Architecture a Fortress or a Liability?',
       publication: 'Towards Data Science',
       date: 'Mar 2026',
